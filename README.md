@@ -18,12 +18,12 @@
 ## 構成
 
 ```text
-Cargo.toml        本体を git 依存（rev 固定）で取り込む。[package.metadata.fandhe-app] に権限の説明文
+Cargo.toml        本体を git 依存（rev 固定）で取り込む。[package.metadata.fandhe-app] に bundle id と権限の説明文
 build.rs          Apple のリンク指定の再出力
 src/lib.rs        Android の android_main
 src/main.rs       iOS・デスクトップの入口
 src/screens.rs    画面の登録とメニュー
-android/          Gradle の殻（MainActivity は 5 機能が呼ぶメソッドだけ）
+android/          Gradle の殻（MainActivity はライブラリの読み込みと safe area の通知だけ）
 scripts/          iOS シミュレータ向け .app の組み立て
 gen/              cargo fandhe gen の出力（git 管理外）
 ```
@@ -31,8 +31,6 @@ gen/              cargo fandhe gen の出力（git 管理外）
 ## 前提
 
 - Rust（`rust-toolchain.toml` の版）。ターゲット `aarch64-linux-android`・`x86_64-linux-android`・`aarch64-apple-ios-sim`
-- 本体の submodule（`docs/spec`）の取得権限。cargo は git 依存の取得時に submodule も取るため、無いと失敗します
-- `.cargo/config.toml` で `net.git-fetch-with-cli = true` にしています。git の資格情報を使うためです
 - Android: JDK 17 以上、Android SDK（platform 35・build-tools 36）、NDK、`cargo install cargo-ndk`、Gradle 9.5 以上
 - iOS: Xcode、起動済みのシミュレータ
 
@@ -41,11 +39,11 @@ gen/              cargo fandhe gen の出力（git 管理外）
 ### 1. ネイティブ設定の生成
 
 ```sh
-cargo install --git https://github.com/Fandhe-AI/fandhe-multi-platform --rev 27989c7a cargo-fandhe
+cargo install --git https://github.com/Fandhe-AI/fandhe-multi-platform --rev a2f70479 cargo-fandhe
 cargo fandhe gen
 ```
 
-`gen/` に Android の manifest・Gradle 設定と iOS の Info.plist が出ます。機能 crate を足したり外したりしたら再実行します。
+`gen/` に Android の manifest・Gradle 設定・`FandheLibrary.java` と iOS の Info.plist が出ます。機能 crate を足したり外したりしたら再実行します。
 
 ### 2. ホストの確認
 

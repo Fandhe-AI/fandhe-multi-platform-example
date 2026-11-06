@@ -1,4 +1,4 @@
-// 利用者アプリ側の殻。機能ごとの Java・res・manifest・Gradle 依存は `cargo fandhe gen` の出力
+// 利用者アプリ側の殻。Java・res・manifest・Gradle 依存は `cargo fandhe gen` の出力
 // （`../../gen/android/`）から取り込み、ここには殻に固有の設定だけを書く。
 plugins {
     id("com.android.application")
@@ -29,15 +29,8 @@ android {
     }
 }
 
-// gen の出力（java.srcDirs・res.srcDirs・ML Kit 等の Gradle 依存）。生成前は失敗させる。
+// gen の出力（java.srcDirs・res.srcDirs・manifest の overlay・GameActivity 等の基盤と ML Kit の Gradle 依存）。
+// 生成前は失敗させる。
 val fandheGradle = rootProject.file("../gen/android/fandhe.gradle")
 check(fandheGradle.exists()) { "gen/android/fandhe.gradle が無い。先に `cargo fandhe gen` を実行する" }
 apply(from = fandheGradle)
-
-dependencies {
-    // GameActivity 4.4.0 は android-activity 0.6 が対応する版（本体 scripts/android/versions.env と同じ）。
-    implementation("androidx.games:games-activity:4.4.0")
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("androidx.core:core:1.13.0")
-    implementation("androidx.activity:activity:1.8.0")
-}

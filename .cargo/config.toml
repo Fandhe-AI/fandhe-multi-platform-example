@@ -4,7 +4,3 @@ IPHONEOS_DEPLOYMENT_TARGET = { value = "17.0", force = false }
 # 起動画面の既定（メニュー）。egui-proxy の android::run は未指定だと sample 画面へ倒れるため、
 # ビルド時の既定（option_env!）で埋める。実行時の FANDHE_PROXY_APP（iOS・デスクトップ）が優先される。
 FANDHE_PROXY_APP = "menu"
-
-# git 依存の取得で、本体の submodule（docs/spec）まで取りに行く。libgit2 は資格情報を拾えず失敗するため CLI を使う。
-[net]
-git-fetch-with-cli = true

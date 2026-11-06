@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 殻の manifest。権限・機能の uses-feature・機能 crate のコンポーネントは gen/android/AndroidManifest.xml から
-     manifest merger で入る（MainActivity への SEND intent-filter も同様）。ここには殻の Activity 本体だけを書く。 -->
+<!-- 殻の manifest。MainActivity の宣言（lib_name・intent-filter）・権限・uses-feature・機能 crate のコンポーネントは
+     gen/android/AndroidManifest.xml から manifest merger で入る。ここには application の属性だけを書く。 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:allowBackup="false"
         android:icon="@android:drawable/sym_def_app_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name="com.fandhe.platform.MainActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:configChanges="orientation|screenSize|keyboardHidden|uiMode|fontScale|density|locale|layoutDirection|smallestScreenSize|screenLayout|keyboard|navigation|touchscreen">
-            <meta-data android:name="android.app.lib_name" android:value="fandhe_example" />
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+        android:theme="@style/AppTheme" />
 </manifest>
