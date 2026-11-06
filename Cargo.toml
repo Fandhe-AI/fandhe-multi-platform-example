@@ -1,0 +1,41 @@
+[package]
+name = "fandhe-example"
+version = "0.1.0"
+edition = "2021"
+description = "fandhe-multi-platform を外から使う最小アプリ（5 機能: カメラ撮影・書類スキャン・NFC カードエミュレーション・共有の受け取り・ホームウィジェット）"
+license = "MIT OR Apache-2.0"
+publish = false
+
+# Android は cdylib（`android_main`）、iOS・デスクトップは bin。
+[lib]
+name = "fandhe_example"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "fandhe-example"
+path = "src/main.rs"
+
+# `cargo fandhe gen` の入力。説明文は利用者（このアプリ）が書く。
+[package.metadata.fandhe-app]
+app-group-prefix = "com.fandhe"
+
+[package.metadata.fandhe-app.ios.usage-descriptions]
+NSCameraUsageDescription = "カメラ撮影と書類スキャンの動作確認に使います"
+
+[build-dependencies]
+fandhe-platform-apple = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a", features = ["build"] }
+
+[dependencies]
+fandhe-core = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a" }
+fandhe-render-egui = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a" }
+# device feature は切れない: 切ると egui-proxy が share-receive の JNI no-op スタブ
+# （Java_..._nativeOnShareReceived）を出し、機能 crate の実体と重複シンボルでリンクが落ちる（#1194 までの併存）。
+fandhe-egui-proxy = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a", features = ["device"] }
+egui = { version = "0.33", default-features = false }
+
+# 選んだ機能。全 crate を同じ rev に揃える。
+fandhe-cap-camera-capture = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a" }
+fandhe-cap-document-scan = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a" }
+fandhe-cap-nfc-card-emulation = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a" }
+fandhe-cap-share-receive = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a" }
+fandhe-cap-home-widget = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "27989c7a" }
