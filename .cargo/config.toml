@@ -1,6 +1,0 @@
-# 本体リポジトリの .cargo/config.toml と同じ（iOS の最小 OS を Info.plist の 17.0 に揃える）。
-[env]
-IPHONEOS_DEPLOYMENT_TARGET = { value = "17.0", force = false }
-# 起動画面の既定（メニュー）。egui-proxy の android::run は未指定だと sample 画面へ倒れるため、
-# ビルド時の既定（option_env!）で埋める。実行時の FANDHE_PROXY_APP（iOS・デスクトップ）が優先される。
-FANDHE_PROXY_APP = "menu"

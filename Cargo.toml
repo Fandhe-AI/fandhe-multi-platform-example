@@ -6,7 +6,7 @@ description = "fandhe-multi-platform を外から使う最小アプリ（5 機�
 license = "MIT OR Apache-2.0"
 publish = false
 
-# Android は cdylib（`android_main`）、iOS・デスクトップは bin。
+# Android は cdylib（`#[fandhe::main]` が生成する `android_main`）、iOS・デスクトップは bin。
 [lib]
 name = "fandhe_example"
 crate-type = ["cdylib", "rlib"]
@@ -25,20 +25,22 @@ bundle-id = "com.fandhe.example"
 [package.metadata.fandhe-app.ios.usage-descriptions]
 NSCameraUsageDescription = "カメラ撮影と書類スキャンの動作確認に使います"
 
-[build-dependencies]
-fandhe-platform-apple = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479", features = ["build"] }
-
 [dependencies]
-fandhe-core = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479" }
-fandhe-render-egui = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479" }
-# device feature は切れない: 切ると egui-proxy が share-receive の JNI no-op スタブ
-# （Java_..._nativeOnShareReceived）を出し、機能 crate の実体と重複シンボルでリンクが落ちる（#1194 までの併存）。
-fandhe-egui-proxy = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479", features = ["device"] }
-egui = { version = "0.33", default-features = false }
+# 入口 crate。使う端末機能を feature（対応表の id）で選ぶ。各 OS の入口（`#[fandhe::main]`）と、
+# 選んだ機能の起動前の登録・終了処理もここから入る。
+fandhe = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74", features = [
+    "camera-capture",
+    "document-scan",
+    "nfc-card-emulation",
+    "share-receive",
+    "home-widget",
+] }
 
-# 選んだ機能。全 crate を同じ rev に揃える。
-fandhe-cap-camera-capture = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479" }
-fandhe-cap-document-scan = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479" }
-fandhe-cap-nfc-card-emulation = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479" }
-fandhe-cap-share-receive = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479" }
-fandhe-cap-home-widget = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "a2f70479" }
+# 本体の型サンプル画面（`fandhe::screens`）を動かす effect ドライバ（`fandhe_cap_<stem>::driver`）。
+# ドライバは入口 crate から再公開されない（契約だけを出す設計）ため、画面を借りるこのアプリは機能 crate にも直接依存する。
+# 自前の画面を書くアプリは `fandhe::<stem>::platform_<stem>()` などの契約だけで足り、ここは要らない。全 crate を同じ rev に揃える。
+fandhe-cap-camera-capture = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
+fandhe-cap-document-scan = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
+fandhe-cap-nfc-card-emulation = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
+fandhe-cap-share-receive = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
+fandhe-cap-home-widget = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
