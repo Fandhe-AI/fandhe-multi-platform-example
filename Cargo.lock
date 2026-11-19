@@ -1012,7 +1012,7 @@ dependencies = [
 [[package]]
 name = "fandhe"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "console_error_panic_hook",
  "egui",
@@ -1038,7 +1038,7 @@ dependencies = [
 [[package]]
 name = "fandhe-cap-camera-capture"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "fandhe-core",
  "fandhe-platform-android",
@@ -1051,7 +1051,7 @@ dependencies = [
 [[package]]
 name = "fandhe-cap-document-scan"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "fandhe-core",
  "fandhe-device",
@@ -1065,7 +1065,7 @@ dependencies = [
 [[package]]
 name = "fandhe-cap-home-widget"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "fandhe-core",
  "fandhe-platform-android",
@@ -1078,7 +1078,7 @@ dependencies = [
 [[package]]
 name = "fandhe-cap-nfc-card-emulation"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "fandhe-core",
  "fandhe-platform-android",
@@ -1090,7 +1090,7 @@ dependencies = [
 [[package]]
 name = "fandhe-cap-share-receive"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "fandhe-core",
  "fandhe-platform-android",
@@ -1103,7 +1103,7 @@ dependencies = [
 [[package]]
 name = "fandhe-core"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "taffy",
  "thiserror 2.0.21",
@@ -1113,7 +1113,7 @@ dependencies = [
 [[package]]
 name = "fandhe-device"
 version = "0.1.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "fandhe-core",
  "image",
@@ -1137,12 +1137,12 @@ dependencies = [
 [[package]]
 name = "fandhe-fonts"
 version = "0.1.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 
 [[package]]
 name = "fandhe-macros"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1152,7 +1152,7 @@ dependencies = [
 [[package]]
 name = "fandhe-platform-android"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "android-activity",
  "jni 0.22.4",
@@ -1161,7 +1161,7 @@ dependencies = [
 [[package]]
 name = "fandhe-platform-apple"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "cc",
 ]
@@ -1169,7 +1169,7 @@ dependencies = [
 [[package]]
 name = "fandhe-platform-windows"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "raw-window-handle",
  "windows 0.61.3",
@@ -1179,7 +1179,7 @@ dependencies = [
 [[package]]
 name = "fandhe-render-egui"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "accesskit",
  "accesskit_winit",
@@ -1203,7 +1203,7 @@ dependencies = [
 [[package]]
 name = "fandhe-runtime"
 version = "0.2.0"
-source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=c14748321b1364c9252d3a4109511582ab55ee74#c14748321b1364c9252d3a4109511582ab55ee74"
+source = "git+https://github.com/Fandhe-AI/fandhe-multi-platform?rev=fad65c82a8a763a996d045911a4d3eb0165eec46#fad65c82a8a763a996d045911a4d3eb0165eec46"
 dependencies = [
  "fandhe-core",
 ]

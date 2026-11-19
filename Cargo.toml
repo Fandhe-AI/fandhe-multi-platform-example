@@ -28,7 +28,7 @@ NSCameraUsageDescription = "カメラ撮影と書類スキャンの動作確認�
 [dependencies]
 # 入口 crate。使う端末機能を feature（対応表の id）で選ぶ。各 OS の入口（`#[fandhe::main]`）と、
 # 選んだ機能の起動前の登録・終了処理もここから入る。
-fandhe = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74", features = [
+fandhe = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "fad65c82a8a763a996d045911a4d3eb0165eec46", features = [
     "camera-capture",
     "document-scan",
     "nfc-card-emulation",
@@ -39,8 +39,8 @@ fandhe = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c1
 # 本体の型サンプル画面（`fandhe::screens`）を動かす effect ドライバ（`fandhe_cap_<stem>::driver`）。
 # ドライバは入口 crate から再公開されない（契約だけを出す設計）ため、画面を借りるこのアプリは機能 crate にも直接依存する。
 # 自前の画面を書くアプリは `fandhe::<stem>::platform_<stem>()` などの契約だけで足り、ここは要らない。全 crate を同じ rev に揃える。
-fandhe-cap-camera-capture = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
-fandhe-cap-document-scan = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
-fandhe-cap-nfc-card-emulation = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
-fandhe-cap-share-receive = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
-fandhe-cap-home-widget = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "c14748321b1364c9252d3a4109511582ab55ee74" }
+fandhe-cap-camera-capture = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "fad65c82a8a763a996d045911a4d3eb0165eec46" }
+fandhe-cap-document-scan = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "fad65c82a8a763a996d045911a4d3eb0165eec46" }
+fandhe-cap-nfc-card-emulation = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "fad65c82a8a763a996d045911a4d3eb0165eec46" }
+fandhe-cap-share-receive = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "fad65c82a8a763a996d045911a4d3eb0165eec46" }
+fandhe-cap-home-widget = { git = "https://github.com/Fandhe-AI/fandhe-multi-platform", rev = "fad65c82a8a763a996d045911a4d3eb0165eec46" }
