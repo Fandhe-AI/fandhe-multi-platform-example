@@ -5,25 +5,25 @@
 
 ## 選んだ機能
 
-| 機能 crate | 画面 |
+| `fandhe` の feature | 画面 |
 | --- | --- |
-| `fandhe-cap-camera-capture` | カメラ撮影 |
-| `fandhe-cap-document-scan` | 書類スキャン |
-| `fandhe-cap-nfc-card-emulation` | NFC カードエミュレーション |
-| `fandhe-cap-share-receive` | 共有の受け取り |
-| `fandhe-cap-home-widget` | ホームウィジェット |
+| `camera-capture` | カメラ撮影 |
+| `document-scan` | 書類スキャン |
+| `nfc-card-emulation` | NFC カードエミュレーション |
+| `share-receive` | 共有の受け取り |
+| `home-widget` | ホームウィジェット |
+
+画面のボタンを端末機能へつなぐ effect ドライバは各機能 crate（`fandhe-cap-<id>`）にあるため、5 つの crate も直接依存に書いています。
 
 起動するとこの 5 画面へのリストが出ます。画面を開くと右上に「メニュー」ボタンが出ます。
 
 ## 構成
 
 ```text
-Cargo.toml        本体を git 依存（rev 固定）で取り込む。[package.metadata.fandhe-app] に bundle id と権限の説明文
-build.rs          Apple のリンク指定の再出力
-src/lib.rs        Android の android_main
-src/main.rs       iOS・デスクトップの入口
-src/screens.rs    画面の登録とメニュー
-android/          Gradle の殻（MainActivity はライブラリの読み込みと safe area の通知だけ）
+Cargo.toml        入口 crate fandhe を git 依存（rev 固定）で取り込み、機能を feature で選ぶ。[package.metadata.fandhe-app] に bundle id と権限の説明文
+src/lib.rs        #[fandhe::main] を付けた起動画面の関数（メニュー）。各 OS の入口はここから生成される
+src/main.rs       iOS・デスクトップの実行体（生成された main を呼ぶだけ）
+android/          Gradle の殻（MainActivity はライブラリの読み込みだけ）
 scripts/          iOS シミュレータ向け .app の組み立て
 gen/              cargo fandhe gen の出力（git 管理外）
 ```
@@ -39,7 +39,7 @@ gen/              cargo fandhe gen の出力（git 管理外）
 ### 1. ネイティブ設定の生成
 
 ```sh
-cargo install --git https://github.com/Fandhe-AI/fandhe-multi-platform --rev a2f70479 cargo-fandhe
+cargo install --git https://github.com/Fandhe-AI/fandhe-multi-platform --rev <Cargo.toml の rev> cargo-fandhe
 cargo fandhe gen
 ```
 
@@ -66,6 +66,7 @@ ABI は Gradle のプロパティ `fandheAndroidAbis`（既定 `arm64-v8a,x86_64
 
 Vulkan を使います。Android 16（API 36）のエミュレータは、gfxstream の Vulkan ドライバが
 `vkQueueSubmit` で落ちることがあります（本アプリのコードの外）。API 34 のエミュレータと実機を使ってください。
+API 34 のエミュレータで画面が黒いまま応答しなくなる場合は、`emulator -avd <名前> -gpu host` で起動します。
 
 ### 4. iOS シミュレータ
 
@@ -76,15 +77,7 @@ xcrun simctl install booted build/ios-sim/FandheExample.app
 xcrun simctl launch booted com.fandhe.example
 ```
 
-起動画面は環境変数で選べます（既定はメニュー）。
-
-```sh
-SIMCTL_CHILD_FANDHE_PROXY_APP=document_scan_show xcrun simctl launch booted com.fandhe.example
-```
-
-画面名は `camera_capture`・`document_scan_show`・`nfc_card_emulation_show`・`share_receive_show`・`home_widget_show`・`menu` です。
-
 ## 制約
 
-- 本体の入口 crate `fandhe` と `#[fandhe::main]`、`cargo fandhe run` / `build` は未提供のため、現在の構造（`fandhe-egui-proxy` の入口関数）に合わせています
+- `cargo fandhe run` / `build` は未提供のため、ビルドと起動は上の手順で行います
 - 実機での確認（カメラ・NFC・書類スキャン・共有）は未実施です
